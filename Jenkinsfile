@@ -8,8 +8,9 @@ pipeline {
         stage('Building') {
             agent any
             steps {
+                echo "Trial Echo"
                 // Build our current image
-                echo "docker build -t ${IMG_NAME}:${IMG_REVISION}-${BUILD_ID} ."
+                sh "docker build -t ${IMG_NAME}:${IMG_REVISION}-${BUILD_ID} ."
             }
         }
         
@@ -52,5 +53,3 @@ pipeline {
     }
     
 }
-
-                
