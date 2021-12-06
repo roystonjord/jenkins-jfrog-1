@@ -8,9 +8,6 @@ pipeline {
         stage('Building') {
             agent any
             steps {
-                 // copy the env file into our directory
-                sh "cp ~/jobs/env_files/mpesa_payment_gateway_env/.env ."
-
                 // Build our current image
                 sh "docker build -t ${IMG_NAME}:${IMG_REVISION}-${BUILD_ID} ."
             }
@@ -21,7 +18,7 @@ pipeline {
             steps {
                 dir(path: env.BUILD_ID) {
                     sh "docker tag ${IMG_NAME}:${IMG_REVISION}-${BUILD_ID} ${IMG_NAME}:latest"
-                    sh "docker-compose up -d"
+                    sh "docker run -d -p 3000:3000 ${IMAGE_NAME} --name node-hello-world
                 }
             }
             post {
@@ -34,9 +31,6 @@ pipeline {
        stage('Deploying to Jfrog') {
             agent any
             steps {
-                dir(path: env.BUILD_ID) {
-                    sh "docker tag ${IMG_NAME}:${IMG_REVISION}-${BUILD_ID} ${IMG_NAME}:latest"
-                    sh "docker-compose up -d"
                   rtDockerPush(
                       serverId: "jFrog-ar1",
                       image: "${IMG_NAME}:${IMG_REVISION}-${BUILD_ID} ${IMG_NAME}:latest",
@@ -45,7 +39,7 @@ pipeline {
                       // Attach custom properties to the published artifacts:
                       properties: 'project-name=docker1;status=stable'
                   )
-                }
+             
             }
             post {
                 success {
