@@ -18,7 +18,7 @@ pipeline {
             steps {
                 dir(path: env.BUILD_ID) {
                     sh "docker tag ${IMG_NAME}:${IMG_REVISION}-${BUILD_ID} ${IMG_NAME}:latest"
-                    sh "docker run -d -p 3000:3000 ${IMAGE_NAME} --name node-hello-world
+                    sh "docker run -d -p 3000:3000 ${IMAGE_NAME} --name node-hello-world"
                 }
             }
             post {
