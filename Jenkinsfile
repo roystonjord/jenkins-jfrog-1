@@ -10,7 +10,7 @@ pipeline {
             steps {
                 echo "Trial Echo"
                 // Build our current image
-                sh "docker build -t ${IMG_NAME}:${IMG_REVISION}-${BUILD_ID} ."
+                sh "docker build -t node-hello-world ."
             }
         }
         
@@ -18,10 +18,9 @@ pipeline {
         stage('Deploying') {
             agent any
             steps {
-                dir(path: env.BUILD_ID) {
-                    sh "docker tag ${IMG_NAME}:${IMG_REVISION}-${BUILD_ID} ${IMG_NAME}:latest"
-                    sh "docker run -d -p 3000:3000 ${IMAGE_NAME} --name node-hello-world"
-                }
+                sh "docker tag node-hello-world:latest roytech.jfrog.io/default-docker-local/node-hello-world"
+                sh "docker run -d -p 3000:3000 node-hello-world --name node-hello-world"
+              
             }
             post {
                 success {
@@ -35,7 +34,7 @@ pipeline {
             steps {
                   rtDockerPush(
                       serverId: "jFrog-ar1",
-                      image: "${IMG_NAME}:${IMG_REVISION}-${BUILD_ID} ${IMG_NAME}:latest",
+                      image: "roytech.jfrog.io/default-docker-local/node-hello-world",
                       host: 'https://roytech.jfrog.io/',
                       targetRepo: 'local-repo', // where to copy to (from docker-virtual)
                       // Attach custom properties to the published artifacts:
