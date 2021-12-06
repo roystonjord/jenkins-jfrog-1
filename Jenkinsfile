@@ -9,7 +9,7 @@ pipeline {
             agent any
             steps {
                 // Build our current image
-                sh "docker build -t ${IMG_NAME}:${IMG_REVISION}-${BUILD_ID} ."
+                echo "Hello World"
             }
         }
  
