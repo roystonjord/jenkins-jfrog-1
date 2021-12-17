@@ -33,14 +33,14 @@ pipeline {
             agent any
             steps {
                 echo "nice try"
-//                   rtDockerPush(
-//                       serverId: "jFrog-ar1",
-//                       image: "roytech.jfrog.io/default-docker-local/node-hello-world",
-//                       host: 'https://roytech.jfrog.io/',
-//                       targetRepo: 'default-docker-local', // where to copy to (from docker-virtual)
-//                       // Attach custom properties to the published artifacts:
-//                       properties: 'project-name=docker1;status=stable' 
-//                   )
+                  rtDockerPush(
+                      serverId: "jFrog-ar1",
+                      image: "roytech.jfrog.io/default-docker-local/node-hello-world",
+                      host: 'https://roytech.jfrog.io/',
+                      targetRepo: 'default-docker-local', // where to copy to (from docker-virtual)
+                      // Attach custom properties to the published artifacts:
+                      properties: 'project-name=docker1;status=stable' 
+                  )
              
             }
             post {
