@@ -34,7 +34,7 @@ pipeline {
             steps {
                 echo "nice try"
                   rtDockerPush(
-                      serverId: "jFrog-ar1",
+                      serverId: "RoyJfrog",
                       image: "roytech.jfrog.io/default-docker-local/node-hello-world",
                       host: 'https://roytech.jfrog.io/',
                       targetRepo: 'default-docker-local', // where to copy to (from docker-virtual)
