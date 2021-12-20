@@ -32,7 +32,6 @@ pipeline {
        stage('Deploying to Jfrog') {
             agent any
             steps {
-                echo "nice try"
                 
                     rtServer (
                         id: 'RoyJfrog',
@@ -49,16 +48,28 @@ pipeline {
                         timeout: 300
                     )
                 
+                 
+            }
+        }
+        
+        stage('Deploying to Jfrog') {
+            agent any
+            steps {
+                echo "nice try"
+                
                   rtDockerPush(
                       serverId: "RoyJfrog",
                       image: "roytech.jfrog.io/default-docker-local/node-hello-world",
                       host: 'https://roytech.jfrog.io/',
+                      url: 'https://roytech.jfrog.io/artifactory',
                       targetRepo: 'default-docker-local', // where to copy to (from docker-virtual)
                       // Attach custom properties to the published artifacts:
                       properties: 'project-name=docker1;status=stable' 
                   )
              
             }
+           
+           
             post {
                 success {
                     echo 'Deployment to Jfrog successful'
