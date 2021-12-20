@@ -29,7 +29,7 @@ pipeline {
             }
         }
       
-       stage('Deploying to Jfrog') {
+       stage('Connect to Jfrog') {
             agent any
             steps {
                 
