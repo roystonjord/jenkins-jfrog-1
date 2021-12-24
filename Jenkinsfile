@@ -3,7 +3,6 @@ pipeline {
     environment {
         IMG_REVISION="1.0.0"
         IMG_NAME='roytech.jfrog.io/default-docker-local/node-hello-world'
-        CREDENTIALS = credentials('jfrog-account')
     }
     stages {
         stage('Building') {
