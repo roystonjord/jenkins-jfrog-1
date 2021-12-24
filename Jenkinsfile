@@ -36,20 +36,20 @@ pipeline {
                 
                 echo 'Deployment successful'
                 
-//                     rtServer (
-//                         id: 'RoyJfrog',
-//                         url: 'http://my-artifactory-domain/artifactory',
-//                         // If you're using username and password:
-//                         username: 'davidjosephsizya@gmail.com',
-//                         password: 'Jfrog@2021',
-//                         // If you're using Credentials ID:
-//                         //credentialsId: 'ccrreeddeennttiiaall',
-//                         // If Jenkins is configured to use an http proxy, you can bypass the proxy when using this Artifactory server:
-//                         bypassProxy: true,
-//                         // Configure the connection timeout (in seconds).
-//                         // The default value (if not configured) is 300 seconds:
-//                         timeout: 300
-//                     )
+                    rtServer (
+                        id: 'RoyJfrog',
+                        url: 'http://my-artifactory-domain/artifactory',
+                        // If you're using username and password:
+                        username: 'davidjosephsizya@gmail.com',
+                        password: 'Jfrog@2021',
+                        // If you're using Credentials ID:
+                        //credentialsId: 'ccrreeddeennttiiaall',
+                        // If Jenkins is configured to use an http proxy, you can bypass the proxy when using this Artifactory server:
+                        bypassProxy: true,
+                        // Configure the connection timeout (in seconds).
+                        // The default value (if not configured) is 300 seconds:
+                        timeout: 300
+                    )
                 
                  
             }
@@ -60,15 +60,15 @@ pipeline {
             steps {
                 echo "nice try"
                 
-                  rtDockerPush(
-                      serverId: "RoyJfrog",
-                      image: "roytech.jfrog.io/default-docker-local/node-hello-world",
-                      host: 'https://roytech.jfrog.io/',
-                      //url: 'https://roytech.jfrog.io/artifactory',
-                      targetRepo: 'default-docker-local', // where to copy to (from docker-virtual)
-                      // Attach custom properties to the published artifacts:
-                      properties: 'project-name=docker1;status=stable' 
-                  )
+//                   rtDockerPush(
+//                       serverId: "RoyJfrog",
+//                       image: "roytech.jfrog.io/default-docker-local/node-hello-world",
+//                       host: 'https://roytech.jfrog.io/',
+//                       //url: 'https://roytech.jfrog.io/artifactory',
+//                       targetRepo: 'default-docker-local', // where to copy to (from docker-virtual)
+//                       // Attach custom properties to the published artifacts:
+//                       properties: 'project-name=docker1;status=stable' 
+//                   )
              
             }
            
