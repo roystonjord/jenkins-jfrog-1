@@ -3,6 +3,7 @@ pipeline {
     environment {
         IMG_REVISION="1.0.0"
         IMG_NAME='roytech.jfrog.io/default-docker-local/node-hello-world'
+        CREDENTIALS = credentials('jfrog-account')
     }
     stages {
         stage('Building') {
@@ -60,7 +61,7 @@ pipeline {
             steps {
                 echo "nice try"
                 
-                sh "docker login roytech.jfrog.io --username ${JFROG_USERNAME} --password ${JFROG_PASSWORD}"
+                sh "docker login roytech.jfrog.io ${CREDENTIALS}"
                 sh "docker push roytech.jfrog.io/default-docker-local/node-hello-world:latest"
                 
 //                   rtDockerPush(
