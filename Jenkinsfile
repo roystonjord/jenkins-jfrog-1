@@ -19,7 +19,7 @@ pipeline {
             agent any
             steps {
                 sh "docker tag node-hello-world:latest roytech.jfrog.io/default-docker-local/node-hello-world"
-                sh "docker run -d -p 3000:3000 node-hello-world --name node-hello-world"
+                sh "docker run -d -p 3000:3000 roytech.jfrog.io/default-docker-local/node-hello-world"
                 sh "docker images --filter dangling=true  -q | xargs docker rmi -f"
               
             }
@@ -34,20 +34,22 @@ pipeline {
             agent any
             steps {
                 
-                    rtServer (
-                        id: 'RoyJfrog',
-                        url: 'http://my-artifactory-domain/artifactory',
-                        // If you're using username and password:
-                        username: 'davidjosephsizya@gmail.com',
-                        password: 'Jfrog@2021',
-                        // If you're using Credentials ID:
-                        //credentialsId: 'ccrreeddeennttiiaall',
-                        // If Jenkins is configured to use an http proxy, you can bypass the proxy when using this Artifactory server:
-                        bypassProxy: true,
-                        // Configure the connection timeout (in seconds).
-                        // The default value (if not configured) is 300 seconds:
-                        timeout: 300
-                    )
+                echo 'Deployment successful'
+                
+//                     rtServer (
+//                         id: 'RoyJfrog',
+//                         url: 'http://my-artifactory-domain/artifactory',
+//                         // If you're using username and password:
+//                         username: 'davidjosephsizya@gmail.com',
+//                         password: 'Jfrog@2021',
+//                         // If you're using Credentials ID:
+//                         //credentialsId: 'ccrreeddeennttiiaall',
+//                         // If Jenkins is configured to use an http proxy, you can bypass the proxy when using this Artifactory server:
+//                         bypassProxy: true,
+//                         // Configure the connection timeout (in seconds).
+//                         // The default value (if not configured) is 300 seconds:
+//                         timeout: 300
+//                     )
                 
                  
             }
