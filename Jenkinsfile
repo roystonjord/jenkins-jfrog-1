@@ -19,7 +19,7 @@ pipeline {
             agent any
             steps {
                 sh "docker tag node-hello-world roytech.jfrog.io/default-docker-local/node-hello-world:latest"
-                sh "docker run -d -p 3000:3000 roytech.jfrog.io/default-docker-local/node-hello-world:latest"
+                sh "docker run -d -p 3000:3000 roytech.jfrog.io/default-docker-local/node-hello-world:latest --name hello-world"
                 sh "docker images --filter dangling=true  -q | xargs docker rmi -f"
               
             }
