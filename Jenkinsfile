@@ -63,7 +63,7 @@ pipeline {
                   rtDockerPush(
                       serverId: "RoyJfrog",
                       image: "roytech.jfrog.io/default-docker-local/node-hello-world",
-                      host: 'https://roytech.jfrog.io/',
+                      host: 'https://roytech.jfrog.io/artifactory',
                       //url: 'https://roytech.jfrog.io/artifactory',
                       targetRepo: 'default-docker-local', // where to copy to (from docker-virtual)
                       // Attach custom properties to the published artifacts:
