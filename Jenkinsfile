@@ -60,7 +60,7 @@ pipeline {
             steps {
                 echo "nice try"
                 
-                sh "docker login roytech.jfrog.io --username davidjosephsizya@gmail.com --password Jfrog@2021"
+                sh "docker login roytech.jfrog.io --username ${JFROG_USERNAME} --password ${JFROG_PASSWORD}"
                 sh "docker push roytech.jfrog.io/default-docker-local/node-hello-world:latest"
                 
 //                   rtDockerPush(
