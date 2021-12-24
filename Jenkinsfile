@@ -20,7 +20,7 @@ pipeline {
             steps {
                 sh "docker tag node-hello-world1 roytech.jfrog.io/default-docker-local/node-hello-world:latest"
                 //sh "docker run -d -p 3000:3000 roytech.jfrog.io/default-docker-local/node-hello-world:latest --name hello-world"
-                sh "docker images --filter dangling=true  -q | xargs docker rmi -f"
+                //sh "docker images --filter dangling=true  -q | xargs docker rmi -f"
               
             }
             post {
