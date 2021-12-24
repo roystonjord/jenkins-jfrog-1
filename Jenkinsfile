@@ -10,7 +10,7 @@ pipeline {
             steps {
                 echo "Trial Echo"
                 // Build our current image
-                sh "docker build -t node-hello-world ."
+                sh "docker build -t node-hello-world1 ."
             }
         }
         
@@ -18,7 +18,7 @@ pipeline {
         stage('Deploying') {
             agent any
             steps {
-                sh "docker tag node-hello-world roytech.jfrog.io/default-docker-local/node-hello-world:latest"
+                sh "docker tag node-hello-world1 roytech.jfrog.io/default-docker-local/node-hello-world:latest"
                 //sh "docker run -d -p 3000:3000 roytech.jfrog.io/default-docker-local/node-hello-world:latest --name hello-world"
                 sh "docker images --filter dangling=true  -q | xargs docker rmi -f"
               
@@ -60,15 +60,18 @@ pipeline {
             steps {
                 echo "nice try"
                 
-                  rtDockerPush(
-                      serverId: "RoyJfrog",
-                      image: "roytech.jfrog.io/default-docker-local/node-hello-world",
-                      host: 'https://roytech.jfrog.io/artifactory',
-                      //url: 'https://roytech.jfrog.io/artifactory',
-                      targetRepo: 'default-docker-local', // where to copy to (from docker-virtual)
-                      // Attach custom properties to the published artifacts:
-                      properties: 'project-name=docker1;status=stable' 
-                  )
+                sh "docker login roytech.jfrog.io"
+                sh "docker push roytech.jfrog.io/default-docker-local/node-hello-world:latest"
+                
+//                   rtDockerPush(
+//                       serverId: "RoyJfrog",
+//                       image: "roytech.jfrog.io/default-docker-local/node-hello-world",
+//                       host: 'https://roytech.jfrog.io/artifactory',
+//                       //url: 'https://roytech.jfrog.io/artifactory',
+//                       targetRepo: 'default-docker-local', // where to copy to (from docker-virtual)
+//                       // Attach custom properties to the published artifacts:
+//                       properties: 'project-name=docker1;status=stable' 
+//                   )
              
             }
            
